@@ -42,16 +42,20 @@ make
 
 ## Running the program
 
+```
+cd src
+```
+
 After building the project, you can run the program with the following command:
 
 ```
-./cache <size_of_cache> <reader_file> <writer_file> <items_file>
+./cache_handler <size_of_cache> <reader_file> <writer_file> <items_file>
 ```
 
 - `size_of_cache`: An integer value indicating the number of elements that the cache can hold at any given time.
 - `reader_file`: A file that contains a list of file names. Each file in this list is an input to a reader thread.
 - `writer_file`: A file that contains a list of file names. Each file in this list is an input to a writer thread.
-- `items_file`: The actual data file for your program. Each line of the file is either blank or contains one number.
+- `items_file`: The actual data file for your program. Each line of the file is either blank or contains some value.
 
 ## Design considerations
 
@@ -67,10 +71,14 @@ On the other hand, when your program is write-heavy, you may want to focus on mi
 
 ## Unit tests
 
-To run the unit tests, simply execute:
+To run the unit tests, simply be in `build` directory and execute:
 
 ```
-./cache_test
+cd test
+./cache_main_test
+./reader_test
+./writer_test
+./cache_manager_test
 ```
 
 This will run a series of tests to validate the functionality and correctness of the Cache-Manager program.
