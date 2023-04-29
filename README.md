@@ -59,9 +59,14 @@ After building the project, you can run the program with the following command:
 
 ## Design considerations
 
-When your program is read-heavy, the cache should prioritize keeping frequently accessed items in the cache to minimize the time spent reading from the disk. This can be achieved by implementing a Least Recently Used (LRU) or Most Frequently Used (MFU) cache replacement policy.
+Currently, the program does not specifically prioritize read-heavy or write-heavy workloads. The implementation is quite simple (MFU) and does not include advanced cache eviction policies, write buffering, or caching policies like write-through, or write-back.
 
-On the other hand, when your program is write-heavy, you may want to focus on minimizing the time spent on writing to the disk. This can be achieved by implementing a write buffer that batches multiple write operations before flushing them to the disk. Additionally, you can use a write-through or write-back caching policy to control when and how the cache updates the disk.
+In its current state, the program reads data from an input file, stores it in a buffer, writes the buffer's content to another file, and searches for specific items within the buffer. The program does not have a dedicated mechanism to handle read-heavy or write-heavy workloads, and its performance will depend on the balance of read and write operations in the input files provided (i.e., reader_file and writer_file).
+
+When our program is read-heavy, the cache should prioritize keeping frequently accessed items in the cache to minimize the time spent reading from the disk. This can be achieved by implementing a Least Recently Used (LRU) or Most Frequently Used (MFU) cache replacement policy.
+
+Future Work: 
+When your program is write-heavy, you may want to focus on minimizing the time spent on writing to the disk. This can be achieved by implementing a write buffer that batches multiple write operations before flushing them to the disk. Additionally, we can use a write-through or write-back caching policy to control when and how the cache updates the disk.
 
 ## Assumptions
 
